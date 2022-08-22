@@ -19,16 +19,21 @@ const ResModal = ({ res }: any) => {
   const token = localStorage.getItem('token');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [status, _] = useRecoilState(StatusState);
+
   const handleChangeModalState = () => {
     setIsOpen(!isOpen);
   };
+
   const data = {
     rezStatusId: status._id,
     customerId: res.customer,
   };
 
   // 일반유저
+  console.log(data);
   const onhandleUpdate = () => {
+    // todo 에러 해결
+
     axios.patch(`${API_URL}/reservation/user/${res.reservationId}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,

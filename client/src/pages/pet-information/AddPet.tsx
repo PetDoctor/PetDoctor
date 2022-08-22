@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import RadioBtn from '../../components/Buttons/RadioBtn';
+import RadioBtn from '../../components/buttons/RadioBtn';
 import { UploadFileInput } from '../hospital-info/Style';
 import {
   Title,

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserCard from './UserCard';
 import { InfoText, ListContainer, Header } from '../../components/Liststyle';
-import { UserInfoType } from '../user-info/Interface';
 import styled from 'styled-components';
-import Checkbox from '../../components/Buttons/CheckBox';
+import Checkbox from '../../components/buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
+import { UserInfoType } from '../../apis/user/UserTypes';
 
 const Container = styled(ListContainer)`
   max-width: 700px;

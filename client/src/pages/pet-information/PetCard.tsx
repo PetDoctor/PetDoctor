@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { PetInfoType } from './PetInfoInterface';
 import {
   PetCardContainer,
   DeleteBtn,
@@ -16,15 +14,13 @@ import {
   Contents,
   Button,
 } from './PetInfoStyle';
-import RadioBtn from '../../components/Buttons/RadioBtn';
+import RadioBtn from '../../components/buttons/RadioBtn';
+import { PetInfoType } from '../../apis/user/UserTypes';
+import { PetAPI } from '../../apis/user/User';
 
 const defaultImg = '/defaultImg.png';
-
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
-
 function PetCard({ pet, idx, onhandleDelete }: any) {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || '';
   const [petInfo, setPetInfo] = useState<PetInfoType>({
     _id: '',
     image: '',
@@ -60,13 +56,14 @@ function PetCard({ pet, idx, onhandleDelete }: any) {
 
   const onhandleUpdate = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    const data = { ...petInfo, petId: pet._id, sex: gender, neutralized: neut };
+    const info = {
+      ...petInfo,
+      petId: pet._id,
+      sex: gender,
+      neutralized: neut,
+    };
     try {
-      axios.patch(`${API_URL}/pet/update`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      PetAPI.UpdatePetInfo(token, info);
     } catch (err) {
       console.log(err);
 
