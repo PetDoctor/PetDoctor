@@ -5,7 +5,7 @@ import ReserveCard from './ReserveCard';
 import { Container, Column } from './ReserveStyle';
 import Pagination from '../home/Pagenation';
 import { atom, useRecoilState } from 'recoil';
-import { UserReserveAPI } from '../../apis/user/User';
+import { UserReserveAPI } from '../../apis/reservation/Reservation';
 
 export const StatusState = atom({
   key: 'statusState', // unique ID (다른 atoms/selectors을 구별하기 위해서)

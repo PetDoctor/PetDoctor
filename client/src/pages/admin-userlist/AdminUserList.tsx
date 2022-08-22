@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import UserCard from './UserCard';
 import { InfoText, ListContainer, Header } from '../../components/Liststyle';
 import styled from 'styled-components';
@@ -7,6 +6,7 @@ import Checkbox from '../../components/buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
 import { UserInfoType } from '../../apis/user/UserTypes';
+import { UserAPI } from '../../apis/user/User';
 
 const Container = styled(ListContainer)`
   max-width: 700px;
@@ -16,33 +16,31 @@ const Container = styled(ListContainer)`
 const FlexContainer = styled.div`
   display: flex;
 `;
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
+
+// TODO: 페이지네이션 타입 따로 빼기
+type pagesType = {
+  perPage: number;
+  totalPage: number;
+};
 
 const AdminUserList: React.FC = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || '';
   const [datas, setDatas] = useState<UserInfoType[]>([]);
   const [search, setSearch] = useState<string>();
   const [normal, setNormal] = useState<boolean>(true);
   const [expired, setExpired] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<any>({ perPage: 10 });
+  const [pages, setPages] = useState<pagesType>({ perPage: 10, totalPage: 0 });
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/api/userlist?page=${page}&perPage=${pages.perPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setDatas(res.data.users);
-        setPages({
-          perPage: res.data.perPage,
-          totalPage: res.data.totlaUsers,
-        });
-        setPage(res.data.page);
+    UserAPI.getAllUserInfo(token, page, pages.perPage).then((res) => {
+      setDatas(res.data.users);
+      setPages({
+        perPage: res.data.perPage,
+        totalPage: res.data.totlaUsers,
       });
+      setPage(res.data.page);
+    });
   }, [page]);
 
   const onhandleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {

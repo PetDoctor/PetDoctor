@@ -32,6 +32,7 @@ import PetSelect from './PetSelect';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { reservationState } from '../../state/ReservationState';
+import { HospitalAPI } from '../../apis/hospital/Hospital';
 
 const BookingButtonContainer = styled.div``;
 const BookingButton = styled.button`
@@ -62,14 +63,13 @@ function Detail() {
   const [service, setService] = useState<any>([]);
 
   const fetchGetData = async () => {
-    await CustomAxiosGet.get(`/hospital/${hospitalName}/detail`).then((res) =>
+    await HospitalAPI.getHospitalDetail(hospitalName).then((res) =>
       setHospitalInfo(res.data.data.hospDetailInfo),
     );
-    await axios
-      .get(`${API_URL}/hospital/${hospitalName}/Services`) //
-      .then((res) => {
-        setService(res.data.data.hospServices);
-      });
+
+    HospitalAPI.getHospitalService(hospitalName).then((res) => {
+      setService(res.data.data.hospServices);
+    });
   };
   useEffect(() => {
     fetchGetData();

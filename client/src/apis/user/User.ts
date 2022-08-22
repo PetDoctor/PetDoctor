@@ -2,8 +2,8 @@ import clientApi from '../Axios';
 import {
   PetInfoType,
   UserInfoType,
-  ReserveInfoType,
   LoginStateType,
+  UserStatusType,
 } from './UserTypes';
 
 export const UserLogAPI = {
@@ -37,6 +37,22 @@ export const UserLogAPI = {
 export const UserAPI = {
   getUserInfo: (token: string) => {
     return clientApi.get('/api/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getAllUserInfo: (token: string, page: number, perPage: number) => {
+    return clientApi.get(`/api/userlist?page=${page}&perPage=${perPage}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  UpdateUserStatus: (token: string, statusInfo: UserStatusType) => {
+    return clientApi.patch(`/api/admin/status`, statusInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -93,39 +109,6 @@ export const PetAPI = {
   },
   UpdatePetInfo: (token: string, petInfo: PetInfoType) => {
     return clientApi.patch('/pet/update', petInfo, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  },
-};
-
-export const UserReserveAPI = {
-  getReserveInfo: (token: string, page: number, perPage: number) => {
-    return clientApi.get(
-      `/reservation/user/list?page=${page}&perPage=${perPage}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
-  },
-
-  UpdateReserveState: (
-    token: string,
-    reserveId: string,
-    reserveInfo: ReserveInfoType,
-  ) => {
-    return clientApi.patch(`/reservation/user/${reserveId}`, reserveInfo, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  },
-
-  getRezStatus: (token: string) => {
-    return clientApi.get(`/reservationStatus/list`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

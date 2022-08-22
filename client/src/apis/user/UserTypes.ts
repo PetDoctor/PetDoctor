@@ -43,7 +43,7 @@ export type PetInfoType = {
   weight: number;
 };
 
-export type ReserveInfoType = {
-  rezStatusId: string;
-  customerId: string;
+export type UserStatusType = {
+  userId: string;
+  userStatus: string;
 };
