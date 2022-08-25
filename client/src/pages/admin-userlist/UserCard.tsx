@@ -8,8 +8,9 @@ import {
   Select,
 } from '../../components/Liststyle';
 import { UserAPI } from '../../apis/user/User';
+import { AdminUserInfoListType } from '../../apis/user/UserTypes';
 // 바뀐 로컬 주소 URL
-function UserCard({ data }: any) {
+function UserCard({ data }: { data: AdminUserInfoListType }) {
   const token = localStorage.getItem('token') || '';
   const [status, setStatus] = useState<string>(data?.userStatus);
   useEffect(() => {

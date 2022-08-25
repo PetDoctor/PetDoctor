@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
-function SearchBar({ setSearch }: any) {
+function SearchBar({ setSearch }: { setSearch: (search: string) => void }) {
   const formRef = useRef<HTMLFormElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
   const onhandleSearch = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    setSearch(searchRef.current?.value);
+    setSearch(searchRef.current?.value || '');
     formRef.current?.reset();
   };
   return (
