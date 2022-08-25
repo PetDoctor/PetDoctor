@@ -4,6 +4,7 @@ import {
   UserInfoType,
   LoginStateType,
   UserStatusType,
+  SubmitPetInfo,
 } from './UserTypes';
 
 export const UserLogAPI = {
@@ -92,7 +93,7 @@ export const PetAPI = {
       },
     });
   },
-  AddPetInfo: (token: string, petInfo: PetInfoType) => {
+  AddPetInfo: (token: string, petInfo: SubmitPetInfo) => {
     return clientApi.post('/pet/register', petInfo, {
       headers: {
         Authorization: `Bearer ${token}`,

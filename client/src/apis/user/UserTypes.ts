@@ -43,6 +43,19 @@ export type PetInfoType = {
   weight: number;
 };
 
+export type SubmitPetInfo = {
+  age: string;
+  breed: string;
+  image: File | null;
+  medicalHistory: string;
+  name: string;
+  neutralized: string;
+  sex: string;
+  species: string;
+  vaccination: string;
+  weight: string;
+};
+
 export type UserStatusType = {
   userId: string;
   userStatus: string;

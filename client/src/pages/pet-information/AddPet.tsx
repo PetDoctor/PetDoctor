@@ -1,5 +1,6 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { SubmitPetInfo } from '../../apis/user/UserTypes';
 import RadioBtn from '../../components/buttons/RadioBtn';
 
 import {
@@ -16,18 +17,14 @@ import {
   UploadFileLabel,
 } from './PetInfoStyle';
 
-const UploadFileInput = styled.input`
-  position: absolute;
-  padding: 0;
-  margin: -1px;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-`;
-
-function AddPet({ onhandleAdd }: any) {
+function AddPet({
+  onhandleAdd,
+}: {
+  onhandleAdd: (petInfo: SubmitPetInfo) => void;
+}) {
   const [gender, setGender] = useState<string>();
   const [neut, setNeut] = useState<string>();
-  const [img, setImg] = useState<File | null>();
+  const [img, setImg] = useState<File | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
@@ -41,17 +38,19 @@ function AddPet({ onhandleAdd }: any) {
     event.preventDefault();
     const data = {
       image: img,
-      name: nameRef.current?.value,
-      age: ageRef.current?.value,
-      weight: weightRef.current?.value,
-      species: speciesRef.current?.value,
-      breed: breedRef.current?.value,
-      medicalHistory: medicalHistoryRef.current?.value,
-      vaccination: vaccinationRef.current?.value,
-      sex: gender,
-      neutralized: neut,
+      name: nameRef.current?.value || '',
+      age: ageRef.current?.value || '',
+      weight: weightRef.current?.value || '',
+      species: speciesRef.current?.value || '',
+      breed: breedRef.current?.value || '',
+      medicalHistory: medicalHistoryRef.current?.value || '',
+      vaccination: vaccinationRef.current?.value || '',
+      sex: gender || '',
+      neutralized: neut || '',
     };
+
     onhandleAdd(data);
+
     formRef.current?.reset();
     setImg(null);
     setNeut('');
@@ -148,3 +147,11 @@ function AddPet({ onhandleAdd }: any) {
 }
 
 export default AddPet;
+
+const UploadFileInput = styled.input`
+  position: absolute;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
