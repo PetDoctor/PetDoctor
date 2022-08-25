@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function RadioBtn({ state, name, value, setFunc }: any) {
+function RadioBtn({
+  state,
+  value,
+  name,
+  setFunc,
+}: {
+  state: string;
+  value: string;
+  name: string;
+  setFunc: (gender: string) => void;
+}) {
   const onChange = () => {
     setFunc(value);
   };

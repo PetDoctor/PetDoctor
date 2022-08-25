@@ -22,8 +22,8 @@ function AddPet({
 }: {
   onhandleAdd: (petInfo: SubmitPetInfo) => void;
 }) {
-  const [gender, setGender] = useState<string>();
-  const [neut, setNeut] = useState<string>();
+  const [gender, setGender] = useState<string>('');
+  const [neut, setNeut] = useState<string>('');
   const [img, setImg] = useState<File | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -80,6 +80,7 @@ function AddPet({
           <RadioContainer>
             <RadioBtn
               value="F"
+              name={gender}
               state={gender}
               setFunc={(gender: string) => {
                 setGender(gender);
@@ -87,6 +88,7 @@ function AddPet({
             />
             <RadioBtn
               value="M"
+              name={gender}
               state={gender}
               setFunc={(gender: string) => {
                 setGender(gender);
@@ -101,6 +103,7 @@ function AddPet({
           <RadioContainer>
             <RadioBtn
               value="완료"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
@@ -108,6 +111,7 @@ function AddPet({
             />
             <RadioBtn
               value="미완료"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
@@ -115,6 +119,7 @@ function AddPet({
             />
             <RadioBtn
               value="모름"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
