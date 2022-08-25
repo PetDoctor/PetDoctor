@@ -3,7 +3,7 @@ import { Container, InfoInput, InputLabel } from '../InfoForm';
 
 type TBookProps = {
   label: string;
-  defaultValue: string;
+  defaultValue: string | number;
   name: string;
 };
 
