@@ -1,6 +1,11 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-function SearchBar({ setSearch }: any) {
+
+interface ISetSearch {
+  setSearch: (value: string | undefined) => void;
+}
+
+function SearchBar({ setSearch }: ISetSearch) {
   const formRef = useRef<HTMLFormElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 

@@ -11,10 +11,6 @@ const Container = styled.div`
   padding: 28px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   border-radius: 12px;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
 `;
 
 const Welcome = styled.h3`
