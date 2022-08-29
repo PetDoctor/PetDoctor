@@ -1,6 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
 import RadioBtn from '../../components/Buttons/RadioBtn';
-import { UploadFileInput } from '../hospital-info/Style';
 import {
   Title,
   RadioContainer,
@@ -125,7 +124,7 @@ function AddPet({ onhandleAdd }: any) {
       </InfoContainer>
       <InfoContainer>
         <UploadFileLabel htmlFor="uploadFile">펫 사진 업로드</UploadFileLabel>
-        <UploadFileInput
+        <input
           type="file"
           id="uploadFile"
           accept="image/*"
