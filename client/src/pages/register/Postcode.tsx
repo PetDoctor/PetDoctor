@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import { Input, Button } from 'antd';
 import Modal from 'react-modal';
 import { IAddr } from './RegisterForm';
+import { Address } from '../../../node_modules/react-daum-postcode/lib/loadPostcode';
 
 const AddressContainer = styled.div`
   display: grid;
@@ -29,7 +30,7 @@ export default function Postcode({ setAddress }: IGetData) {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function handleAddrComplete(data: any) {
+  function handleAddrComplete(data: Address) {
     setPostal(data.zonecode);
     setAddress1(data.roadAddress);
     setIsOpen(false);

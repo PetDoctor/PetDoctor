@@ -6,7 +6,11 @@ const TitleName = styled.h1`
   margin-bottom: 30px;
 `;
 
-export default function Title({ title }: any) {
+interface ITitle {
+  title: string;
+}
+
+export default function Title({ title }: ITitle) {
   return (
     <>
       <TitleName>{title}</TitleName>

@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { InfoCard, TextContainer } from '../../components/Liststyle';
 import { Column } from '../user-reserv/ReserveStyle';
 import ResModal from '../../components/book/ResModal';
-function ReserveCard({ res }: any) {
+import { IInfoArrRes } from './HospitalReserve';
+
+interface IReserveCard {
+  res: IInfoArrRes;
+}
+
+function ReserveCard({ res }: IReserveCard) {
   return (
     <InfoCard>
       <TextContainer>

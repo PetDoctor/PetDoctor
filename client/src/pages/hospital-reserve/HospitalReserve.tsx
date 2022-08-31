@@ -6,6 +6,29 @@ import ReserveCard from './ReserveCard';
 import { Container, Column } from '../user-reserv/ReserveStyle';
 import Pagination from '../home/Pagenation';
 
+export interface IInfoArrRes {
+  email: string;
+  rezDate: string;
+  rezHour: number;
+  name: string;
+  petName: string;
+  species: string;
+  breed: string;
+  age: number;
+  sex: string;
+  weight: number;
+  medicalHistory: string;
+  vaccination: string;
+  service: string;
+  price: number;
+  resName: string;
+}
+
+interface IPages {
+  perPage: number;
+  totalPage: number;
+}
+
 function UserReserve() {
   const [resInfo, setResInfo] = useState<any>({
     Reservations: [],
@@ -14,7 +37,7 @@ function UserReserve() {
     rezStatusInfoes: [],
   });
   const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<any>({ perPage: 10 });
+  const [pages, setPages] = useState<IPages>({ perPage: 10, totalPage: 0 });
 
   useEffect(() => {
     axios
@@ -78,7 +101,7 @@ function UserReserve() {
         <Column></Column>
       </Header>
 
-      {InfoArr.map((res: any, i: number) => (
+      {InfoArr.map((res: IInfoArrRes, i: number) => (
         <ReserveCard key={i} res={res} />
       ))}
       <Pagination
