@@ -1,5 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
-import RadioBtn from '../../components/Buttons/RadioBtn';
+import styled from 'styled-components';
+import RadioBtn from '../../components/buttons/RadioBtn';
+
 import {
   Title,
   RadioContainer,
@@ -13,6 +15,14 @@ import {
   Btn,
   UploadFileLabel,
 } from './PetInfoStyle';
+
+const UploadFileInput = styled.input`
+  position: absolute;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
 
 function AddPet({ onhandleAdd }: any) {
   const [gender, setGender] = useState<string>();

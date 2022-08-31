@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import PetCard from './PetCard';
 import { MainContainer, AddBtn } from './PetInfoStyle';
 import AddPet from './AddPet';
-import { PetInfoType } from './PetInfoInterface';
-
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
+import { PetAPI } from '../../apis/user/User';
+import { PetInfoType } from '../../apis/user/UserTypes';
 
 function PetInformation() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || '';
   const [pets, setPets] = useState<PetInfoType[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // 처음 한 번 서버 통신
@@ -18,33 +15,19 @@ function PetInformation() {
   }, []);
 
   const reload = async () => {
-    const res = await axios.get(`${API_URL}/pet/mypets`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = res.data;
-    setPets(data);
+    await PetAPI.getPetInfo(token) //
+      .then((res) => setPets(res.data));
   };
 
   const onhandleDelete = async (id: string) => {
-    await axios.delete(`${API_URL}/pet/delete`, {
-      data: { petId: id },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await PetAPI.DeletePetInfo(token, id);
+    // todo 삭제 후 확인 메시지
     await reload();
   };
 
-  const onhandleAdd = async (data: any) => {
+  const onhandleAdd = async (petInfo: PetInfoType) => {
     try {
-      await axios.post(`${API_URL}/pet/register`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'content-type': 'multipart/form-data',
-        },
-      });
+      await PetAPI.AddPetInfo(token, petInfo);
       await reload();
     } catch (err) {
       console.log(err);
