@@ -10,10 +10,12 @@ interface ITitle {
   title: string;
 }
 
-export default function Title({ title }: ITitle) {
+const Title = ({ title }: ITitle) => {
   return (
     <>
       <TitleName>{title}</TitleName>
     </>
   );
-}
+};
+
+export default Title;

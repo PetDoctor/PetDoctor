@@ -73,7 +73,7 @@ const EtcContainer = styled.div`
   }
 `;
 
-export default function Footer() {
+const Footer = () => {
   return (
     <Container>
       <div>
@@ -96,4 +96,6 @@ export default function Footer() {
       </EtcContainer>
     </Container>
   );
-}
+};
+
+export default Footer;

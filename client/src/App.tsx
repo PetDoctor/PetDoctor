@@ -20,7 +20,7 @@ import Layout from './components/Layout';
 import AdminReserve from './pages/admin-reserv/AdminReserve';
 import PrivateRouter from './utils/PrivateRouter';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -53,6 +53,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

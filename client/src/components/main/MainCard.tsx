@@ -32,7 +32,7 @@ interface IProps {
 }
 
 // main페이지에 사용할 컴포넌트
-function MainCard({ filtered }: IProps) {
+const MainCard = ({ filtered }: IProps) => {
   const dataProps = filtered.map((items, index) => {
     return (
       <MainCardContainer to={`hospital/${items.name}/detail`} key={index}>
@@ -54,6 +54,6 @@ function MainCard({ filtered }: IProps) {
   });
 
   return <MainCardWrapper>{dataProps}</MainCardWrapper>;
-}
+};
 
 export default MainCard;
