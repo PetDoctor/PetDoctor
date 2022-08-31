@@ -5,19 +5,10 @@ import styled from 'styled-components';
 import Checkbox from '../../components/buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
-import { UserInfoType } from '../../apis/user/UserTypes';
+import { AdminUserInfoListType, UserInfoType } from '../../apis/user/UserTypes';
 import { UserAPI } from '../../apis/user/User';
 
-const Container = styled(ListContainer)`
-  max-width: 700px;
-  margin: 0rem auto;
-  padding: 1rem;
-`;
-const FlexContainer = styled.div`
-  display: flex;
-`;
-
-// TODO: 페이지네이션 타입 따로 빼기
+// 지민 TODO: 페이지네이션 타입 따로 빼기
 type pagesType = {
   perPage: number;
   totalPage: number;
@@ -25,7 +16,7 @@ type pagesType = {
 
 const AdminUserList: React.FC = () => {
   const token = localStorage.getItem('token') || '';
-  const [datas, setDatas] = useState<UserInfoType[]>([]);
+  const [datas, setDatas] = useState<AdminUserInfoListType[]>([]);
   const [search, setSearch] = useState<string>();
   const [normal, setNormal] = useState<boolean>(true);
   const [expired, setExpired] = useState<boolean>(true);
@@ -58,9 +49,8 @@ const AdminUserList: React.FC = () => {
   );
 
   if (search) {
-    list = list.filter((data: any) => data.email.includes(search));
+    list = list.filter((data) => data.email.includes(search));
   }
-  console.log(pages);
 
   return (
     <Container>
@@ -86,7 +76,7 @@ const AdminUserList: React.FC = () => {
         <InfoText>아이디</InfoText>
         <InfoText>상태</InfoText>
       </Header>
-      {list.map((data: any, i: number) => (
+      {list.map((data, i) => (
         <UserCard key={i} data={data} />
       ))}
       <Pagination
@@ -100,3 +90,12 @@ const AdminUserList: React.FC = () => {
 };
 
 export default AdminUserList;
+
+const Container = styled(ListContainer)`
+  max-width: 700px;
+  margin: 0rem auto;
+  padding: 1rem;
+`;
+const FlexContainer = styled.div`
+  display: flex;
+`;

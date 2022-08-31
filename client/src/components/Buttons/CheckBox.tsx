@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Checkbox({ text, onChange, title, checked }: any) {
+function Checkbox({
+  text,
+  onChange,
+  title,
+  checked,
+}: {
+  text: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  title: string;
+  checked: boolean;
+}) {
   return (
     <StyledLabel htmlFor={text}>
       <StyledInput

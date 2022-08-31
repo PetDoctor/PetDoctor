@@ -6,6 +6,7 @@ import { Container, Column } from './ReserveStyle';
 import Pagination from '../home/Pagenation';
 import { atom, useRecoilState } from 'recoil';
 import { UserReserveAPI } from '../../apis/reservation/Reservation';
+import { ReservationType } from '../../apis/reservation/ReserveTypes';
 
 export const StatusState = atom({
   key: 'statusState', // unique ID (다른 atoms/selectors을 구별하기 위해서)
@@ -18,6 +19,7 @@ type pagesType = {
 };
 function UserReserve() {
   const token = localStorage.getItem('token') || '';
+  // TODO: any type 해결
   const [resInfo, setResInfo] = useState<any>({
     Reservations: [],
     hospInfoes: [],
@@ -48,7 +50,7 @@ function UserReserve() {
   }, []);
 
   const InfoArr = [];
-  // useCallback 사용해보기
+
   if (resInfo.length > 0) {
     for (let i = 0; i < resInfo[0].length; i++) {
       InfoArr.push({
@@ -75,7 +77,7 @@ function UserReserve() {
         <Column></Column>
       </Header>
 
-      {InfoArr.map((res: any, i: number) => (
+      {InfoArr.map((res: ReservationType, i: number) => (
         <ReserveCard key={i} res={res} idx={i} />
       ))}
       <Pagination

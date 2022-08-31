@@ -3,7 +3,7 @@ import PetCard from './PetCard';
 import { MainContainer, AddBtn } from './PetInfoStyle';
 import AddPet from './AddPet';
 import { PetAPI } from '../../apis/user/User';
-import { PetInfoType } from '../../apis/user/UserTypes';
+import { PetInfoType, SubmitPetInfo } from '../../apis/user/UserTypes';
 
 function PetInformation() {
   const token = localStorage.getItem('token') || '';
@@ -25,7 +25,7 @@ function PetInformation() {
     await reload();
   };
 
-  const onhandleAdd = async (petInfo: PetInfoType) => {
+  const onhandleAdd = async (petInfo: SubmitPetInfo) => {
     try {
       await PetAPI.AddPetInfo(token, petInfo);
       await reload();
@@ -42,8 +42,8 @@ function PetInformation() {
       </AddBtn>
       {isOpen && (
         <AddPet
-          onhandleAdd={(data: any) => {
-            onhandleAdd(data);
+          onhandleAdd={(petInfo: SubmitPetInfo) => {
+            onhandleAdd(petInfo);
           }}
         />
       )}

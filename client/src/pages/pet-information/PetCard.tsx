@@ -19,7 +19,15 @@ import { PetInfoType } from '../../apis/user/UserTypes';
 import { PetAPI } from '../../apis/user/User';
 
 const defaultImg = '/defaultImg.png';
-function PetCard({ pet, idx, onhandleDelete }: any) {
+function PetCard({
+  pet,
+  idx,
+  onhandleDelete,
+}: {
+  pet: PetInfoType;
+  idx: number;
+  onhandleDelete: (id: string) => void;
+}) {
   const token = localStorage.getItem('token') || '';
   const [petInfo, setPetInfo] = useState<PetInfoType>({
     _id: '',
