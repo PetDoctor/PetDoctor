@@ -1,5 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react';
-import RadioBtn from '../../components/Buttons/RadioBtn';
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
+import { SubmitPetInfo } from '../../apis/user/UserTypes';
+import RadioBtn from '../../components/buttons/RadioBtn';
+
 import {
   Title,
   RadioContainer,
@@ -14,10 +17,14 @@ import {
   UploadFileLabel,
 } from './PetInfoStyle';
 
-function AddPet({ onhandleAdd }: any) {
-  const [gender, setGender] = useState<string>();
-  const [neut, setNeut] = useState<string>();
-  const [img, setImg] = useState<File | null>();
+function AddPet({
+  onhandleAdd,
+}: {
+  onhandleAdd: (petInfo: SubmitPetInfo) => void;
+}) {
+  const [gender, setGender] = useState<string>('');
+  const [neut, setNeut] = useState<string>('');
+  const [img, setImg] = useState<File | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
@@ -31,17 +38,19 @@ function AddPet({ onhandleAdd }: any) {
     event.preventDefault();
     const data = {
       image: img,
-      name: nameRef.current?.value,
-      age: ageRef.current?.value,
-      weight: weightRef.current?.value,
-      species: speciesRef.current?.value,
-      breed: breedRef.current?.value,
-      medicalHistory: medicalHistoryRef.current?.value,
-      vaccination: vaccinationRef.current?.value,
-      sex: gender,
-      neutralized: neut,
+      name: nameRef.current?.value || '',
+      age: ageRef.current?.value || '',
+      weight: weightRef.current?.value || '',
+      species: speciesRef.current?.value || '',
+      breed: breedRef.current?.value || '',
+      medicalHistory: medicalHistoryRef.current?.value || '',
+      vaccination: vaccinationRef.current?.value || '',
+      sex: gender || '',
+      neutralized: neut || '',
     };
+
     onhandleAdd(data);
+
     formRef.current?.reset();
     setImg(null);
     setNeut('');
@@ -71,6 +80,7 @@ function AddPet({ onhandleAdd }: any) {
           <RadioContainer>
             <RadioBtn
               value="F"
+              name={gender}
               state={gender}
               setFunc={(gender: string) => {
                 setGender(gender);
@@ -78,6 +88,7 @@ function AddPet({ onhandleAdd }: any) {
             />
             <RadioBtn
               value="M"
+              name={gender}
               state={gender}
               setFunc={(gender: string) => {
                 setGender(gender);
@@ -92,6 +103,7 @@ function AddPet({ onhandleAdd }: any) {
           <RadioContainer>
             <RadioBtn
               value="완료"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
@@ -99,6 +111,7 @@ function AddPet({ onhandleAdd }: any) {
             />
             <RadioBtn
               value="미완료"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
@@ -106,6 +119,7 @@ function AddPet({ onhandleAdd }: any) {
             />
             <RadioBtn
               value="모름"
+              name={neut}
               state={neut}
               setFunc={(status: string) => {
                 setNeut(status);
@@ -138,3 +152,11 @@ function AddPet({ onhandleAdd }: any) {
 }
 
 export default AddPet;
+
+const UploadFileInput = styled.input`
+  position: absolute;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;

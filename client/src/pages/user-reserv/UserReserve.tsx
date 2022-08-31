@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Title } from '../../components/InfoForm';
 import { Header } from '../../components/Liststyle';
 import ReserveCard from './ReserveCard';
 import { Container, Column } from './ReserveStyle';
 import Pagination from '../home/Pagenation';
 import { atom, useRecoilState } from 'recoil';
-
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
+import { UserReserveAPI } from '../../apis/reservation/Reservation';
+import { ReservationType } from '../../apis/reservation/ReserveTypes';
 
 export const StatusState = atom({
   key: 'statusState', // unique ID (다른 atoms/selectors을 구별하기 위해서)
   default: { _id: '', name: '' }, // default value (aka initial value)
 });
+
+type pagesType = {
+  perPage: number;
+  totalPage: number;
+};
 function UserReserve() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || '';
+  // TODO: any type 해결
   const [resInfo, setResInfo] = useState<any>({
     Reservations: [],
     hospInfoes: [],
@@ -23,47 +27,30 @@ function UserReserve() {
     rezStatusInfoes: [],
   });
   const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<any>({ perPage: 10 });
+  const [pages, setPages] = useState<pagesType>({ perPage: 10, totalPage: 0 });
   const [status, setStatus] = useRecoilState(StatusState); // todo => 리팩토링!!
 
   useEffect(() => {
-    axios
-      .get(
-        `${API_URL}/reservation/user/list?page=${page}&perPage=${pages.perPage}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
-      .then((res) => {
-        const data = res.data.data;
-        console.log(data);
-
-        const check = Object.values(data.ReservationsInfo);
-        setPages({
-          perPage: data.perPage,
-          totalPage: data.totalHospitals,
-        });
-        setPage(data.page);
-        setResInfo(check);
+    UserReserveAPI.getReserveInfo(token, page, pages.perPage).then((res) => {
+      const data = res.data.data;
+      const check = Object.values(data.ReservationsInfo);
+      setPages({
+        perPage: data.perPage,
+        totalPage: data.totalHospitals,
       });
-    console.log(pages.perPage);
+      setPage(data.page);
+      setResInfo(check);
+    });
   }, [page]);
 
   // todo => 리팩토링! 더 좋은 방법있는지 찾아보기
   useEffect(() => {
-    axios
-      .get(`${API_URL}/reservationStatus/list`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    UserReserveAPI.getRezStatus(token) //
       .then((res) => setStatus(res.data[2]));
   }, []);
 
   const InfoArr = [];
-  // useCallback 사용해보기
+
   if (resInfo.length > 0) {
     for (let i = 0; i < resInfo[0].length; i++) {
       InfoArr.push({
@@ -90,7 +77,7 @@ function UserReserve() {
         <Column></Column>
       </Header>
 
-      {InfoArr.map((res: any, i: number) => (
+      {InfoArr.map((res: ReservationType, i: number) => (
         <ReserveCard key={i} res={res} idx={i} />
       ))}
       <Pagination

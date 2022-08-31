@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import DaumPostcode from 'react-daum-postcode';
 import Modal from 'react-modal';
-import { UserInfoType, Data, Address } from './Interface';
 import {
   MainContainer,
   Title,
@@ -21,12 +19,15 @@ import { CustomAxiosGet } from '../../common/CustomAxios';
 import { useResetRecoilState } from 'recoil';
 import { userState } from '../../state/UserState';
 import { hospitalLoginState } from '../../state/HospitalState';
-
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
+import { UserAPI } from '../../apis/user/User';
+import {
+  DaumAddData,
+  UserInfoType,
+  UserAddress,
+} from '../../apis/user/UserTypes';
 
 function UserInfo() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
   // 받아온 정보를 저장하는 state
   const [userInfo, setUserInfo] = useState<UserInfoType>({
@@ -39,7 +40,7 @@ function UserInfo() {
   });
   // address 관련
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [addr, setAddr] = useState<Address>({
+  const [addr, setAddr] = useState<UserAddress>({
     postalCode: '',
     address1: '',
     address2: '',
@@ -50,16 +51,10 @@ function UserInfo() {
 
   // 처음 한 번만 서버 통신
   useEffect(() => {
-    axios
-      .get(`${API_URL}/api/user`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUserInfo(res.data);
-        setAddr(res.data.address);
-      });
+    UserAPI.getUserInfo(token).then((res) => {
+      setUserInfo(res.data);
+      setAddr(res.data.address);
+    });
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +71,7 @@ function UserInfo() {
     setIsOpen(!isOpen);
   };
 
-  const completeHandler = (data: Data) => {
+  const completeHandler = (data: DaumAddData) => {
     setIsOpen(false);
     const ex = {
       ...userInfo?.address,
@@ -95,18 +90,14 @@ function UserInfo() {
     event.preventDefault();
     const currentPassword = currentPwRef.current?.value;
     const newPassword = newPwRef.current?.value;
-    const data = {
+    const info = {
       ...userInfo,
       address: addr,
       currentPassword: currentPassword,
       newPassword: newPassword,
     };
 
-    axios.patch(`${API_URL}/api/users/${userInfo?.email}`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    UserAPI.UpdateUserInfo(token, userInfo.email, info);
   };
 
   // 로그아웃 함수
@@ -124,22 +115,11 @@ function UserInfo() {
 
   const expiration = async () => {
     //TODO
-    await axios
-      .patch(
-        `${API_URL}/api/expiration
-      `,
-        {},
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        },
-      )
-      .then((res) => {
-        // alert(`${userInfo.userName}님 탈퇴가 완료되었습니다 🥲`);
-        handleLogout();
-        navigate('/');
-      });
+    UserAPI.ExpirationUserInfo(token).then((res) => {
+      // alert(`${userInfo.userName}님 탈퇴가 완료되었습니다 🥲`);
+      handleLogout();
+      navigate('/');
+    });
   };
   return (
     <MainContainer>

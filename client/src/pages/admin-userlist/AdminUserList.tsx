@@ -1,48 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import UserCard from './UserCard';
 import { InfoText, ListContainer, Header } from '../../components/Liststyle';
-import { UserInfoType } from '../user-info/Interface';
 import styled from 'styled-components';
-import Checkbox from '../../components/Buttons/CheckBox';
+import Checkbox from '../../components/buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
+import { AdminUserInfoListType, UserInfoType } from '../../apis/user/UserTypes';
+import { UserAPI } from '../../apis/user/User';
 
-const Container = styled(ListContainer)`
-  max-width: 700px;
-  margin: 0rem auto;
-  padding: 1rem;
-`;
-const FlexContainer = styled.div`
-  display: flex;
-`;
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
+// 지민 TODO: 페이지네이션 타입 따로 빼기
+type pagesType = {
+  perPage: number;
+  totalPage: number;
+};
 
 const AdminUserList: React.FC = () => {
-  const token = localStorage.getItem('token');
-  const [datas, setDatas] = useState<UserInfoType[]>([]);
+  const token = localStorage.getItem('token') || '';
+  const [datas, setDatas] = useState<AdminUserInfoListType[]>([]);
   const [search, setSearch] = useState<string>();
   const [normal, setNormal] = useState<boolean>(true);
   const [expired, setExpired] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
-  const [pages, setPages] = useState<any>({ perPage: 10 });
+  const [pages, setPages] = useState<pagesType>({ perPage: 10, totalPage: 0 });
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/api/userlist?page=${page}&perPage=${pages.perPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setDatas(res.data.users);
-        setPages({
-          perPage: res.data.perPage,
-          totalPage: res.data.totlaUsers,
-        });
-        setPage(res.data.page);
+    UserAPI.getAllUserInfo(token, page, pages.perPage).then((res) => {
+      setDatas(res.data.users);
+      setPages({
+        perPage: res.data.perPage,
+        totalPage: res.data.totlaUsers,
       });
+      setPage(res.data.page);
+    });
   }, [page]);
 
   const onhandleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,9 +49,8 @@ const AdminUserList: React.FC = () => {
   );
 
   if (search) {
-    list = list.filter((data: any) => data.email.includes(search));
+    list = list.filter((data) => data.email.includes(search));
   }
-  console.log(pages);
 
   return (
     <Container>
@@ -88,7 +76,7 @@ const AdminUserList: React.FC = () => {
         <InfoText>아이디</InfoText>
         <InfoText>상태</InfoText>
       </Header>
-      {list.map((data: any, i: number) => (
+      {list.map((data, i) => (
         <UserCard key={i} data={data} />
       ))}
       <Pagination
@@ -102,3 +90,12 @@ const AdminUserList: React.FC = () => {
 };
 
 export default AdminUserList;
+
+const Container = styled(ListContainer)`
+  max-width: 700px;
+  margin: 0rem auto;
+  padding: 1rem;
+`;
+const FlexContainer = styled.div`
+  display: flex;
+`;
