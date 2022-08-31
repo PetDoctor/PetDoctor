@@ -19,10 +19,10 @@ const HospitalServiceContainer = styled.div`
 `;
 const HospitalServiceTitle = styled(CalendarTitle)``;
 
-type THospitalService = {
+interface THospitalService {
   name: string;
   price: number;
-};
+}
 
 const HospitalService = () => {
   const { hospitalName } = useParams();

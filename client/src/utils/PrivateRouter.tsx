@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-type TPrivateRouteProps = {
+interface TPrivateRouteProps {
   authentication: boolean;
-};
+}
 
 // 호진 TODO: any 타입 고치기
 const PrivateRouter = ({ authentication }: TPrivateRouteProps): any => {

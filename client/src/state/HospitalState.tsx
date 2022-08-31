@@ -5,10 +5,10 @@ const { persistAtom }: any = recoilPersist({
   key: 'hospitalLoginState',
 });
 
-export type THospital = {
+export interface THospital {
   hospitalName: string;
   hospitalState: string;
-};
+}
 
 export const hospitalLoginState = atom<THospital>({
   key: 'hospitalLoginState',

@@ -1,3 +1,3 @@
-export type HospitalType = {
+export interface HospitalType {
   email: string;
-};
+}

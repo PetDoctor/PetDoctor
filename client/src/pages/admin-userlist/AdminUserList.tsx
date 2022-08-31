@@ -9,10 +9,10 @@ import { AdminUserInfoListType, UserInfoType } from '../../apis/user/UserTypes';
 import { UserAPI } from '../../apis/user/User';
 
 // 지민 TODO: 페이지네이션 타입 따로 빼기
-type pagesType = {
+interface pagesType {
   perPage: number;
   totalPage: number;
-};
+}
 
 const AdminUserList: React.FC = () => {
   const token = localStorage.getItem('token') || '';

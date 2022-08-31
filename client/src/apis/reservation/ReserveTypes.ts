@@ -1,9 +1,10 @@
-export type ReserveInfoType = {
+export interface ReserveInfoType {
   rezStatusId: string;
   customerId: string;
-};
+}
 
-export type ReservationType = {
+// TODO: type 수정
+export interface ReservationType {
   address: {
     postalCode: string;
     address1: string;
@@ -52,4 +53,4 @@ export type ReservationType = {
   weight: number;
   __v: number;
   _id: string;
-};
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, InfoInput, InputLabel } from '../InfoForm';
 
-type TBookProps = {
+interface TBookProps {
   label: string;
   defaultValue: string | number;
   name: string;
-};
+}
 
 const ReservationContent = ({ label, defaultValue, name }: TBookProps) => {
   return (

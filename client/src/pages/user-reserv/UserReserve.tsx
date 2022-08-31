@@ -13,10 +13,10 @@ export const StatusState = atom({
   default: { _id: '', name: '' }, // default value (aka initial value)
 });
 
-type pagesType = {
+interface pagesType {
   perPage: number;
   totalPage: number;
-};
+}
 function UserReserve() {
   const token = localStorage.getItem('token') || '';
   // TODO: any type 해결
