@@ -21,16 +21,16 @@ import { userState } from '../../state/UserState';
 import { hospitalLoginState } from '../../state/HospitalState';
 import { UserAPI } from '../../apis/user/User';
 import {
-  DaumAddData,
-  UserInfoType,
-  UserAddress,
+  IDaumAddData,
+  IUserInfoType,
+  IUserAddress,
 } from '../../apis/user/UserTypes';
 
 function UserInfo() {
   const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
   // 받아온 정보를 저장하는 state
-  const [userInfo, setUserInfo] = useState<UserInfoType>({
+  const [userInfo, setUserInfo] = useState<IUserInfoType>({
     userName: '',
     address: { postalCode: '', address1: '', address2: '' },
     email: '',
@@ -40,7 +40,7 @@ function UserInfo() {
   });
   // address 관련
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [addr, setAddr] = useState<UserAddress>({
+  const [addr, setAddr] = useState<IUserAddress>({
     postalCode: '',
     address1: '',
     address2: '',
@@ -71,7 +71,7 @@ function UserInfo() {
     setIsOpen(!isOpen);
   };
 
-  const completeHandler = (data: DaumAddData) => {
+  const completeHandler = (data: IDaumAddData) => {
     setIsOpen(false);
     const ex = {
       ...userInfo?.address,

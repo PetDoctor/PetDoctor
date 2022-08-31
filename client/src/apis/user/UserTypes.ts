@@ -1,9 +1,9 @@
-export interface LoginStateType {
+export interface ILoginState {
   email: string;
   password: string;
 }
 
-export interface UserInfoType {
+export interface IUserInfoType {
   userName: string;
   address: {
     postalCode: string;
@@ -16,19 +16,19 @@ export interface UserInfoType {
   userStatus: string;
 }
 
-export interface UserAddress {
+export interface IUserAddress {
   postalCode: string;
   address1: string;
   address2: string;
 }
 
-export interface DaumAddData {
+export interface IDaumAddData {
   address: string;
   zonecode: string;
   roadAddress: string;
 }
 
-export interface PetInfoType {
+export interface IPetInfo {
   _id: string;
   owner: string;
   age: number;
@@ -43,7 +43,7 @@ export interface PetInfoType {
   weight: number;
 }
 
-export interface SubmitPetInfo {
+export interface ISubmitPetInfo {
   age: string;
   breed: string;
   image: File | null;
@@ -56,13 +56,13 @@ export interface SubmitPetInfo {
   weight: string;
 }
 
-export interface UserStatusType {
+export interface IUserStatus {
   userId: string;
   userStatus: string;
 }
 
 // 관리자 모든 회원 정보의 data type
-export interface AdminUserInfoListType {
+export interface IAdminUserInfoList {
   InCaseOAuth: string;
   address: {
     postalCode: string;

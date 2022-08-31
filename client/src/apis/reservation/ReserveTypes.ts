@@ -1,10 +1,10 @@
-export interface ReserveInfoType {
+export interface IReserveInfo {
   rezStatusId: string;
   customerId: string;
 }
 
 // TODO: type 수정
-export interface ReservationType {
+export interface IReservation {
   address: {
     postalCode: string;
     address1: string;

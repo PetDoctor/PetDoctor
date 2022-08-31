@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { SubmitPetInfo } from '../../apis/user/UserTypes';
+import { ISubmitPetInfo } from '../../apis/user/UserTypes';
 import RadioBtn from '../../components/buttons/RadioBtn';
 
 import {
@@ -20,7 +20,7 @@ import {
 function AddPet({
   onhandleAdd,
 }: {
-  onhandleAdd: (petInfo: SubmitPetInfo) => void;
+  onhandleAdd: (petInfo: ISubmitPetInfo) => void;
 }) {
   const [gender, setGender] = useState<string>('');
   const [neut, setNeut] = useState<string>('');

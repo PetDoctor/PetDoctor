@@ -6,7 +6,7 @@ import { Container, Column } from './ReserveStyle';
 import Pagination from '../home/Pagenation';
 import { atom, useRecoilState } from 'recoil';
 import { UserReserveAPI } from '../../apis/reservation/Reservation';
-import { ReservationType } from '../../apis/reservation/ReserveTypes';
+import { IReservation } from '../../apis/reservation/ReserveTypes';
 
 export const StatusState = atom({
   key: 'statusState', // unique ID (다른 atoms/selectors을 구별하기 위해서)
@@ -77,7 +77,7 @@ function UserReserve() {
         <Column></Column>
       </Header>
 
-      {InfoArr.map((res: ReservationType, i: number) => (
+      {InfoArr.map((res: IReservation, i: number) => (
         <ReserveCard key={i} res={res} idx={i} />
       ))}
       <Pagination

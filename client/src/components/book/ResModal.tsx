@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom';
 import { CheckBtn } from '../../pages/user-reserv/ReserveStyle';
 import { useRecoilState } from 'recoil';
 import { StatusState } from '../../pages/user-reserv/UserReserve';
-import { ReservationType } from '../../apis/reservation/ReserveTypes';
+import { IReservation } from '../../apis/reservation/ReserveTypes';
 
 // 바뀐 로컬 주소 URL
 const API_URL = 'http://localhost:5100';
 
-const ResModal = ({ res }: { res: ReservationType }) => {
+const ResModal = ({ res }: { res: IReservation }) => {
   console.log(res);
 
   const token = localStorage.getItem('token');

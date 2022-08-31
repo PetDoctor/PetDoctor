@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Checkbox from '../../components/buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
-import { AdminUserInfoListType, UserInfoType } from '../../apis/user/UserTypes';
+import { IAdminUserInfoList, IUserInfoType } from '../../apis/user/UserTypes';
 import { UserAPI } from '../../apis/user/User';
 
 // 지민 TODO: 페이지네이션 타입 따로 빼기
@@ -16,7 +16,7 @@ interface pagesType {
 
 const AdminUserList: React.FC = () => {
   const token = localStorage.getItem('token') || '';
-  const [datas, setDatas] = useState<AdminUserInfoListType[]>([]);
+  const [datas, setDatas] = useState<IAdminUserInfoList[]>([]);
   const [search, setSearch] = useState<string>();
   const [normal, setNormal] = useState<boolean>(true);
   const [expired, setExpired] = useState<boolean>(true);

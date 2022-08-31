@@ -2,8 +2,8 @@ import React from 'react';
 import { InfoCard, TextContainer } from '../../components/Liststyle';
 import { Column } from './ReserveStyle';
 import ResModal from '../../components/book/ResModal';
-import { ReservationType } from '../../apis/reservation/ReserveTypes';
-function ReserveCard({ res, idx }: { res: ReservationType; idx: number }) {
+import { IReservation } from '../../apis/reservation/ReserveTypes';
+function ReserveCard({ res, idx }: { res: IReservation; idx: number }) {
   return (
     <InfoCard>
       <TextContainer>
