@@ -134,7 +134,7 @@ function AddPet({ onhandleAdd }: any) {
       </InfoContainer>
       <InfoContainer>
         <UploadFileLabel htmlFor="uploadFile">펫 사진 업로드</UploadFileLabel>
-        <UploadFileInput
+        <input
           type="file"
           id="uploadFile"
           accept="image/*"
