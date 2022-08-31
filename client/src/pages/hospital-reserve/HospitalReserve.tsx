@@ -101,7 +101,7 @@ function UserReserve() {
         <Column></Column>
       </Header>
 
-      {InfoArr.map((res: IInfoArrRes, i: number) => (
+      {InfoArr.map((res: any, i: number) => (
         <ReserveCard key={i} res={res} />
       ))}
       <Pagination

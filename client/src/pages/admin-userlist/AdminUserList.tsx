@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UserCard from './UserCard';
 import { InfoText, ListContainer, Header } from '../../components/Liststyle';
 import styled from 'styled-components';
-import Checkbox from '../../components/buttons/CheckBox';
+import Checkbox from '../../components/Buttons/CheckBox';
 import SearchBar from '../../components/SearchBar';
 import Pagination from '../home/Pagenation';
 import { AdminUserInfoListType, UserInfoType } from '../../apis/user/UserTypes';
@@ -67,7 +67,9 @@ const AdminUserList: React.FC = () => {
           title="탈퇴회원"
           checked={expired}
         />
-        <SearchBar setSearch={(search: string) => setSearch(search)} />
+        <SearchBar
+          setSearch={(search: string | undefined) => setSearch(search)}
+        />
       </FlexContainer>
 
       <Header>
