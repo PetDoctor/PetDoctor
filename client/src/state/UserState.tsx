@@ -5,10 +5,10 @@ const { persistAtom }: any = recoilPersist({
   key: 'userState',
 });
 
-export type TUser = {
+export interface TUser {
   role: string;
   userStatus: string;
-};
+}
 
 export const userState = atom<TUser>({
   key: 'userState',

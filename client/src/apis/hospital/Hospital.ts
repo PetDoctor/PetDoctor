@@ -1,8 +1,8 @@
 import clientApi from '../Axios';
-import { LoginStateType } from '../user/UserTypes';
+import { ILoginState } from '../user/UserTypes';
 
 export const HospitalLogAPI = {
-  login: (loginInfo: LoginStateType) => {
+  login: (loginInfo: ILoginState) => {
     return clientApi.post('/hospital/login', loginInfo, {
       headers: {
         'Content-Type': 'application/json',

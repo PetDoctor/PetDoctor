@@ -1,14 +1,14 @@
 import clientApi from '../Axios';
 import {
-  PetInfoType,
-  UserInfoType,
-  LoginStateType,
-  UserStatusType,
-  SubmitPetInfo,
+  IPetInfo,
+  IUserInfoType,
+  ILoginState,
+  IUserStatus,
+  ISubmitPetInfo,
 } from './UserTypes';
 
 export const UserLogAPI = {
-  login: (loginInfo: LoginStateType) => {
+  login: (loginInfo: ILoginState) => {
     return clientApi.post('/api/login', loginInfo, {
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const UserLogAPI = {
     });
   },
 
-  register: (registerInfo: UserInfoType) => {
+  register: (registerInfo: IUserInfoType) => {
     return clientApi.post('/api/register', JSON.stringify(registerInfo), {
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const UserAPI = {
     });
   },
 
-  UpdateUserStatus: (token: string, statusInfo: UserStatusType) => {
+  UpdateUserStatus: (token: string, statusInfo: IUserStatus) => {
     return clientApi.patch(`/api/admin/status`, statusInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ export const UserAPI = {
     });
   },
 
-  UpdateUserInfo: (token: string, email: string, userInfo: UserInfoType) => {
+  UpdateUserInfo: (token: string, email: string, userInfo: IUserInfoType) => {
     return clientApi.patch(`/api/users/${email}`, userInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ export const PetAPI = {
       },
     });
   },
-  AddPetInfo: (token: string, petInfo: SubmitPetInfo) => {
+  AddPetInfo: (token: string, petInfo: ISubmitPetInfo) => {
     return clientApi.post('/pet/register', petInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -108,7 +108,7 @@ export const PetAPI = {
       },
     });
   },
-  UpdatePetInfo: (token: string, petInfo: PetInfoType) => {
+  UpdatePetInfo: (token: string, petInfo: IPetInfo) => {
     return clientApi.patch('/pet/update', petInfo, {
       headers: {
         Authorization: `Bearer ${token}`,

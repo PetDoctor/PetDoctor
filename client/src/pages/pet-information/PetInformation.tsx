@@ -3,11 +3,11 @@ import PetCard from './PetCard';
 import { MainContainer, AddBtn } from './PetInfoStyle';
 import AddPet from './AddPet';
 import { PetAPI } from '../../apis/user/User';
-import { PetInfoType, SubmitPetInfo } from '../../apis/user/UserTypes';
+import { IPetInfo, ISubmitPetInfo } from '../../apis/user/UserTypes';
 
 function PetInformation() {
   const token = localStorage.getItem('token') || '';
-  const [pets, setPets] = useState<PetInfoType[]>([]);
+  const [pets, setPets] = useState<IPetInfo[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // 처음 한 번 서버 통신
   useEffect(() => {
@@ -25,7 +25,7 @@ function PetInformation() {
     await reload();
   };
 
-  const onhandleAdd = async (petInfo: SubmitPetInfo) => {
+  const onhandleAdd = async (petInfo: ISubmitPetInfo) => {
     try {
       await PetAPI.AddPetInfo(token, petInfo);
       await reload();
@@ -42,7 +42,7 @@ function PetInformation() {
       </AddBtn>
       {isOpen && (
         <AddPet
-          onhandleAdd={(petInfo: SubmitPetInfo) => {
+          onhandleAdd={(petInfo: ISubmitPetInfo) => {
             onhandleAdd(petInfo);
           }}
         />
