@@ -5,8 +5,6 @@ import axios from 'axios';
 import { ITagsProps } from './TagList';
 import { IData } from '../../components/main/MainCard';
 
-// import overnight from '../../';
-
 const TagImg = styled.img`
   width: 40px;
   transition: 0.2s all ease-in-out;
@@ -57,13 +55,7 @@ interface ITagData {
   __v: number;
 }
 
-export default function Tags({
-  setFiltered,
-  setTotal,
-  limit,
-  page,
-  setPage,
-}: ITagsProps) {
+const Tags = ({ setFiltered, setTotal, limit, page, setPage }: ITagsProps) => {
   // 바뀐 로컬 주소 URL
   const API_URL = 'http://localhost:5100';
   const [tagData, setTagData] = useState<ITagData[]>([]); // 태그 데이터 모음
@@ -72,7 +64,7 @@ export default function Tags({
   const [paramsTag, setParamsTag] = useState<string>('24시간');
   const [filterData, setFilterData] = useState<IData[]>([]);
 
-  async function getData() {
+  const getData = async () => {
     const res = await axios.get(`${API_URL}/hospitalTag/list`, {
       headers: {
         'Content-Type': 'application/json',
@@ -80,16 +72,16 @@ export default function Tags({
     });
     setTagData([...res.data]);
     initialList();
-  }
+  };
 
-  async function initialList() {
+  const initialList = async () => {
     const res = await axios.get(
       `${API_URL}/hospital/list/main?page=1&perPage=${limit}&tagName=${paramsTag}`,
     );
     const data = await res.data.data.hospitals;
 
     setFilterData(data);
-  }
+  };
 
   useEffect(() => {
     getData();
@@ -101,7 +93,7 @@ export default function Tags({
   }, []);
 
   useEffect(() => {
-    (async function getNewData() {
+    const getNewData = async () => {
       const res = await axios.get(
         `${API_URL}/hospital/list/main?page=${page}&perPage=${limit}&tagName=${paramsTag}`,
       ); // TODO: tagName=tagState로 변경. page 변경
@@ -113,14 +105,15 @@ export default function Tags({
         tagName: paramsTag,
       });
       setTotal(data.totalHospitals);
-    })();
+    };
+    getNewData();
   }, [paramsTag, page]);
 
   useEffect(() => {
     setFiltered(filterData);
   }, [filterData]);
 
-  function handleTagClick(category: ITagData, idx: number) {
+  const handleTagClick = (category: ITagData, idx: number) => {
     setParamsTag(category.name);
     setSearchParams({
       page: '1',
@@ -129,7 +122,7 @@ export default function Tags({
     });
     setTag(idx);
     setPage(1);
-  }
+  };
 
   return (
     <>
@@ -148,4 +141,6 @@ export default function Tags({
       })}
     </>
   );
-}
+};
+
+export default Tags;

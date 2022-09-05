@@ -4,7 +4,7 @@ import { Column } from '../user-reserv/ReserveStyle';
 import ResModal from '../../components/book/ResModal';
 import { IInfoArrRes } from './HospitalReserve';
 
-function ReserveCard({ res }: any) {
+const ReserveCard = ({ res }: any) => {
   return (
     <InfoCard>
       <TextContainer>
@@ -17,6 +17,6 @@ function ReserveCard({ res }: any) {
       </TextContainer>
     </InfoCard>
   );
-}
+};
 
 export default ReserveCard;

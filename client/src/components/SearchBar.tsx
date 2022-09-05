@@ -5,7 +5,7 @@ interface ISetSearch {
   setSearch: (value: string | undefined) => void;
 }
 
-function SearchBar({ setSearch }: ISetSearch) {
+const SearchBar = ({ setSearch }: ISetSearch) => {
   const formRef = useRef<HTMLFormElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -20,7 +20,7 @@ function SearchBar({ setSearch }: ISetSearch) {
       <SearchBtn onClick={onhandleSearch}>search</SearchBtn>
     </SearchContainer>
   );
-}
+};
 
 const SearchContainer = styled.form`
   display: flex;
@@ -41,4 +41,5 @@ const SearchBtn = styled.button`
   font-size: bold;
   background-color: ${(props) => props.theme.palette.orange};
 `;
+
 export default SearchBar;

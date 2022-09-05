@@ -118,7 +118,7 @@ interface ISearch {
   searchBox: boolean;
 }
 
-export default function Header({ searchBox }: ISearch) {
+const Header = ({ searchBox }: ISearch) => {
   const [isLogin, setIsLogin] = useState<boolean>(
     !!localStorage.getItem('token'),
   );
@@ -136,7 +136,7 @@ export default function Header({ searchBox }: ISearch) {
   }, [token, hospital]);
 
   // 로그아웃 클릭 시 로그아웃
-  async function handleLogout() {
+  const handleLogout = async () => {
     if (token) {
       localStorage.removeItem('token');
       UserResetState();
@@ -148,7 +148,7 @@ export default function Header({ searchBox }: ISearch) {
     alert(`로그아웃이 완료되었습니다:)`);
     setIsLogin(false);
     setProfile(false);
-  }
+  };
 
   return (
     <>
@@ -198,4 +198,6 @@ export default function Header({ searchBox }: ISearch) {
       <Line />
     </>
   );
-}
+};
+
+export default Header;

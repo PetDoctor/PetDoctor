@@ -70,7 +70,11 @@ export interface IAddr {
   address2: string;
 }
 
-const RegisterForm: React.FC<Props> = ({ isHospital }) => {
+interface IRegisterFormProps {
+  isHospital: boolean;
+}
+
+const RegisterForm = ({ isHospital }: IRegisterFormProps) => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -94,9 +98,9 @@ const RegisterForm: React.FC<Props> = ({ isHospital }) => {
 
   const navigate = useNavigate();
 
-  async function handleSubmit(
+  const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
+  ) => {
     e.preventDefault();
 
     if (userName === '') return alert('이름을 입력해주세요.');
@@ -170,18 +174,18 @@ const RegisterForm: React.FC<Props> = ({ isHospital }) => {
 
     alert(`회원가입이 완료되었습니다:)`);
     navigate('/login');
-  }
+  };
 
-  function handleChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     const emailRegex: RegExp = reg.email;
     setIsEmail(emailRegex.test(email));
-  }
+  };
 
-  function handleChangePwd(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChangePwd = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     checkPwd.length && setIsSamePwd(password === checkPwd ? true : false);
-  }
+  };
 
   useEffect(() => {
     const passwordRegex: RegExp = reg.password;

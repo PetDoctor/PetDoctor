@@ -29,7 +29,7 @@ interface IPages {
   totalPage: number;
 }
 
-function UserReserve() {
+const UserReserve = () => {
   const [resInfo, setResInfo] = useState<any>({
     Reservations: [],
     customerInfoes: [],
@@ -112,6 +112,6 @@ function UserReserve() {
       />
     </Container>
   );
-}
+};
 
 export default UserReserve;

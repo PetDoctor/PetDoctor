@@ -15,7 +15,7 @@ const ContentWrapper = styled.div`
   flex: 1;
 `;
 
-export default function Layout() {
+const Layout = () => {
   return (
     <>
       <Wrapper>
@@ -27,4 +27,6 @@ export default function Layout() {
       </Wrapper>
     </>
   );
-}
+};
+
+export default Layout;

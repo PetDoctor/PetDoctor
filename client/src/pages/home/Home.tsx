@@ -4,7 +4,7 @@ import MainCard, { IData } from '../../components/main/MainCard';
 import Pagination from './Pagenation';
 import TagList from './TagList';
 
-export default function Home() {
+const Home = () => {
   const [page, setPage] = useState<number>(1);
   const limit = 4;
   const [total, setTotal] = useState<number>(0);
@@ -28,4 +28,6 @@ export default function Home() {
       />
     </>
   );
-}
+};
+
+export default Home;
