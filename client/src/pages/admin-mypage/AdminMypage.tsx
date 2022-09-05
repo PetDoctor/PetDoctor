@@ -10,7 +10,7 @@ import {
   HeaderDescription,
 } from '../../components/MypageCardBtn';
 
-function AdminMypage() {
+const AdminMypage = () => {
   const navigate = useNavigate();
 
   return (
@@ -64,6 +64,6 @@ function AdminMypage() {
       </Container>
     </div>
   );
-}
+};
 
 export default AdminMypage;

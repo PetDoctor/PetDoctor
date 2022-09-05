@@ -7,7 +7,7 @@ import {
   StatusContainer,
   Select,
 } from '../../components/Liststyle';
-function HpCard() {
+const HpCard = () => {
   return (
     <InfoCard>
       <TextContainer>
@@ -30,6 +30,6 @@ function HpCard() {
       </TextContainer>
     </InfoCard>
   );
-}
+};
 
 export default HpCard;

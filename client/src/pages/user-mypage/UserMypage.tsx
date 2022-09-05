@@ -10,7 +10,7 @@ import {
   HeaderDescription,
 } from '../../components/MypageCardBtn';
 
-function UserMypage() {
+const UserMypage = () => {
   const navigate = useNavigate();
   return (
     <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
@@ -48,6 +48,6 @@ function UserMypage() {
       </Container>
     </div>
   );
-}
+};
 
 export default UserMypage;

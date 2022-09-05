@@ -19,7 +19,7 @@ import { IPetInfo } from '../../apis/user/UserTypes';
 import { PetAPI } from '../../apis/user/User';
 
 const defaultImg = '/defaultImg.png';
-function PetCard({
+const PetCard = ({
   pet,
   idx,
   onhandleDelete,
@@ -27,7 +27,7 @@ function PetCard({
   pet: IPetInfo;
   idx: number;
   onhandleDelete: (id: string) => void;
-}) {
+}) => {
   const token = localStorage.getItem('token') || '';
   const [petInfo, setPetInfo] = useState<IPetInfo>({
     _id: '',
@@ -193,6 +193,6 @@ function PetCard({
       </Contents>
     </PetCardContainer>
   );
-}
+};
 
 export default PetCard;

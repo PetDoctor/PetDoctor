@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Checkbox({
+const Checkbox = ({
   text,
   onChange,
   title,
@@ -11,7 +11,7 @@ function Checkbox({
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   title: string;
   checked: boolean;
-}) {
+}) => {
   return (
     <StyledLabel htmlFor={text}>
       <StyledInput
@@ -24,7 +24,7 @@ function Checkbox({
       <StyledP>{title}</StyledP>
     </StyledLabel>
   );
-}
+};
 
 const StyledInput = styled.input`
   appearance: none;

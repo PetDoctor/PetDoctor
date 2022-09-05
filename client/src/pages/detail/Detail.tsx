@@ -54,7 +54,7 @@ const BookingButton = styled.button`
 // 바뀐 로컬 주소 URL
 const API_URL = 'http://localhost:5100';
 
-function Detail() {
+const Detail = () => {
   const { hospitalName } = useParams();
   const navigate = useNavigate();
   const [hospitalInfo, setHospitalInfo] = useState<any>({});
@@ -167,6 +167,6 @@ function Detail() {
       </ContentContainer>
     </MainContainer>
   );
-}
+};
 
 export default Detail;

@@ -11,7 +11,7 @@ import {
   HeaderDescription,
 } from '../../components/MypageCardBtn';
 
-function HospitalMypage() {
+const HospitalMypage = () => {
   const navigate = useNavigate();
   return (
     <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
@@ -42,6 +42,6 @@ function HospitalMypage() {
       </Container>
     </div>
   );
-}
+};
 
 export default HospitalMypage;

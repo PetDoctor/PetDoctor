@@ -24,7 +24,7 @@ interface LoginState {
   password: string;
 }
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const [isCheckUser, setIsCheckUser] = useState<boolean>(false);
   const [logins, setLogins] = useState<LoginState>({
@@ -161,6 +161,6 @@ function Login() {
       </LoginWrapper>
     </form>
   );
-}
+};
 
 export default Login;
