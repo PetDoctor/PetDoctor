@@ -38,10 +38,9 @@ const TimeButtonWrapper = styled.div`
   border: 1px solid #a0a096;
   padding: 10px;
 `;
-
-type TTimeProps = {
+interface TTimeProps {
   time: number[];
-};
+}
 
 const TimeButton = ({ time }: TTimeProps) => {
   const [bookTime, setBookTime] = useRecoilState(reservationState);

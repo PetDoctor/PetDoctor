@@ -19,10 +19,10 @@ import { hospitalLoginState, THospital } from '../../state/HospitalState';
 import { TUser, userState } from '../../state/UserState';
 import { customAxios } from '../../utils/AxiosModule';
 
-type LoginState = {
+interface LoginState {
   email: string;
   password: string;
-};
+}
 
 function Login() {
   const navigate = useNavigate();

@@ -23,18 +23,18 @@ interface IGetData {
   setAddress: (address: IAddr) => void;
 }
 
-export default function Postcode({ setAddress }: IGetData) {
+const Postcode = ({ setAddress }: IGetData) => {
   const [postal, setPostal] = useState<string>('');
   const [address1, setAddress1] = useState<string>('');
   const [address2, setAddress2] = useState<string>('');
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function handleAddrComplete(data: Address) {
+  const handleAddrComplete = (data: Address) => {
     setPostal(data.zonecode);
     setAddress1(data.roadAddress);
     setIsOpen(false);
-  }
+  };
 
   useEffect(() => {
     setAddress({ postalCode: postal, address1, address2 });
@@ -104,4 +104,6 @@ export default function Postcode({ setAddress }: IGetData) {
       />
     </AddressContainer>
   );
-}
+};
+
+export default Postcode;

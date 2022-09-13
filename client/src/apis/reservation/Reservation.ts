@@ -1,5 +1,5 @@
 import clientApi from '../Axios';
-import { ReserveInfoType } from './ReserveTypes';
+import { IReserveInfo } from './ReserveTypes';
 
 export const UserReserveAPI = {
   reservation: (bookInfo: any) => {
@@ -20,7 +20,7 @@ export const UserReserveAPI = {
   UpdateReserveState: (
     token: string,
     reserveId: string,
-    reserveInfo: ReserveInfoType,
+    reserveInfo: IReserveInfo,
   ) => {
     return clientApi.patch(`/reservation/user/${reserveId}`, reserveInfo, {
       headers: {

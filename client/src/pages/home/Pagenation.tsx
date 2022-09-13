@@ -9,7 +9,7 @@ interface IProps {
   setPage: (page: number) => void;
 }
 
-export default function Pagination({ total, limit, page, setPage }: IProps) {
+const Pagination = ({ total, limit, page, setPage }: IProps) => {
   const numPages = Math.ceil(total / limit);
   const pageArr = Array.from(
     { length: numPages },
@@ -38,7 +38,7 @@ export default function Pagination({ total, limit, page, setPage }: IProps) {
       </Nav>
     </>
   );
-}
+};
 
 const Nav = styled.nav`
   display: flex;
@@ -83,3 +83,5 @@ interface ISelect {
 const NumBtn = styled(Button)<ISelect>`
   font-weight: ${(props) => props.isSelect && 'bold'};
 `;
+
+export default Pagination;

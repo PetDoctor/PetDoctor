@@ -13,10 +13,9 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
   flex: 1;
-`
+`;
 
-export default function LayoutSearch() {
-
+const LayoutSearch = () => {
   return (
     <>
       <Wrapper>
@@ -27,5 +26,7 @@ export default function LayoutSearch() {
         <Footer />
       </Wrapper>
     </>
-  )
-}
+  );
+};
+
+export default LayoutSearch;

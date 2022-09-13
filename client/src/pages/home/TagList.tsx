@@ -19,13 +19,13 @@ export interface ITagsProps {
   setPage: (page: number) => void;
 }
 
-export default function TagList({
+const TagList = ({
   setFiltered,
   setTotal,
   limit,
   page,
   setPage,
-}: ITagsProps) {
+}: ITagsProps) => {
   return (
     <>
       <TagContainer>
@@ -39,4 +39,6 @@ export default function TagList({
       </TagContainer>
     </>
   );
-}
+};
+
+export default TagList;

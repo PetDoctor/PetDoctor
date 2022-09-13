@@ -69,11 +69,11 @@ const AutoSearchData = styled(Link)`
   position: relative;
 `;
 
-export default function Search() {
+const Search = () => {
   const [search, setSearch] = useState<string>(''); // 검색 내용
   const [keyItems, setKeyItems] = useState<string[]>([]); // 필터링 된 배열
 
-  function updateData() {
+  const updateData = () => {
     // 가데이터
     const data = [
       '무료검진',
@@ -110,7 +110,7 @@ export default function Search() {
       key.includes(search),
     ); // 검색한 단어가 data에 포함되는지 여부 판단
     setKeyItems([...filtered]); // 포함하는 데이터만 keyItems에 넣기
-  }
+  };
 
   // 성능 향상을 위한 디바운싱. 200ms동안 동작 없으면 그 데이터에서 필터결과 보여줌
   useEffect(() => {
@@ -148,4 +148,6 @@ export default function Search() {
       </SearchContainer>
     </>
   );
-}
+};
+
+export default Search;

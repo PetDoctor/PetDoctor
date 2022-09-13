@@ -62,7 +62,7 @@ const HospitalSelectBtn = styled(UserSelectBtn)<IButtonProps>`
   font-weight: ${(props) => (props.isHospital ? 'bold' : 'normal')};
 `;
 
-export default function Register() {
+const Register = () => {
   const [isHospital, setIsHospital] = useState<boolean>(false);
 
   return (
@@ -95,4 +95,6 @@ export default function Register() {
       </Container>
     </div>
   );
-}
+};
+
+export default Register;
