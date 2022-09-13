@@ -11,10 +11,19 @@ const Container = styled.div`
   padding: 28px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   border-radius: 12px;
+
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
+    width: 90%;
+  }
 `;
 
 const Welcome = styled.h3`
   margin-bottom: 40px;
+
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
 `;
 
 const BtnContainer = styled.div`
