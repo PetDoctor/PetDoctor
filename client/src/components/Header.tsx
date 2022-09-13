@@ -18,6 +18,10 @@ const HeaderContainer = styled.div`
   align-items: center;
   padding: 10px 80px;
   margin: 10px 0;
+  @media screen and (max-width: 62.5rem) {
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 const Line = styled.div`
@@ -151,52 +155,49 @@ const Header = ({ searchBox }: ISearch) => {
   };
 
   return (
-    <>
-      <div>
-        <HeaderContainer>
-          <LogoContainer>
-            <Logo to="/">
-              <LogoImg src="/logo.jpg" />
-            </Logo>
-          </LogoContainer>
-          {haveSearch && <Search />}
-          <BtnContainer>
-            {!isLogin && hospital.hospitalName === '' ? (
-              <LoginBtn to="/login">로그인</LoginBtn>
-            ) : (
-              <Profile
-                icon={faCircleUser}
-                size="3x"
-                onClick={() => setProfile((cur) => !cur)}
-              />
-            )}
-            {profile && (
-              <ProfileBtnbox profile="true">
-                <Link
-                  to={
-                    role.role === 'basic-user'
-                      ? '/user-mypage'
-                      : role.role === 'admin'
-                      ? 'admin-mypage'
-                      : 'hospital-mypage'
-                  }
-                >
-                  <ProfileBtn num="first" onClick={() => setProfile(false)}>
-                    마이페이지
-                  </ProfileBtn>
-                </Link>
-                <Link to="/">
-                  <ProfileBtn num="last" onClick={handleLogout}>
-                    로그아웃
-                  </ProfileBtn>
-                </Link>
-              </ProfileBtnbox>
-            )}
-          </BtnContainer>
-        </HeaderContainer>
-      </div>
-      <Line />
-    </>
+    <Line>
+      <HeaderContainer>
+        <LogoContainer>
+          <Logo to="/">
+            <LogoImg src="/logo.jpg" />
+          </Logo>
+        </LogoContainer>
+        {haveSearch && <Search />}
+        <BtnContainer>
+          {!isLogin && hospital.hospitalName === '' ? (
+            <LoginBtn to="/login">로그인</LoginBtn>
+          ) : (
+            <Profile
+              icon={faCircleUser}
+              size="3x"
+              onClick={() => setProfile((cur) => !cur)}
+            />
+          )}
+          {profile && (
+            <ProfileBtnbox profile="true">
+              <Link
+                to={
+                  role.role === 'basic-user'
+                    ? '/user-mypage'
+                    : role.role === 'admin'
+                    ? 'admin-mypage'
+                    : 'hospital-mypage'
+                }
+              >
+                <ProfileBtn num="first" onClick={() => setProfile(false)}>
+                  마이페이지
+                </ProfileBtn>
+              </Link>
+              <Link to="/">
+                <ProfileBtn num="last" onClick={handleLogout}>
+                  로그아웃
+                </ProfileBtn>
+              </Link>
+            </ProfileBtnbox>
+          )}
+        </BtnContainer>
+      </HeaderContainer>
+    </Line>
   );
 };
 

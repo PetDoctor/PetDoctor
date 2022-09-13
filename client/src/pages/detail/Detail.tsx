@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
-import { CustomAxiosGet, CustomAxiosPost } from '../../common/CustomAxios';
+import { CustomAxiosPost } from '../../common/CustomAxios';
 import TimeButton from '../../components/detail/TimeButton';
 import MainKeyWord from '../../components/main/MainKeyWord';
 import CalendarUi from './Calendar';
@@ -26,6 +25,7 @@ import {
   ServiceCol,
   ServiceDiv,
   Add,
+  ResButton,
 } from './DetailStyle';
 import HospitalService from './HospitalService';
 import PetSelect from './PetSelect';
@@ -33,6 +33,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { reservationState } from '../../state/ReservationState';
 import { HospitalAPI } from '../../apis/hospital/Hospital';
+import Modal from '../../components/Modal';
+import Reserve from './Reservation';
+import { Button } from '../pet-information/PetInfoStyle';
 
 const BookingButtonContainer = styled.div``;
 const BookingButton = styled.button`
@@ -51,9 +54,6 @@ const BookingButton = styled.button`
   }
 `;
 
-// 바뀐 로컬 주소 URL
-const API_URL = 'http://localhost:5100';
-
 function Detail() {
   const { hospitalName } = useParams();
   const navigate = useNavigate();
@@ -61,6 +61,7 @@ function Detail() {
   const bookDataPost = useRecoilValue(reservationState);
   const token = localStorage.getItem('token');
   const [service, setService] = useState<any>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const fetchGetData = async () => {
     await HospitalAPI.getHospitalDetail(hospitalName).then((res) =>
@@ -146,10 +147,6 @@ function Detail() {
               ))}
             </ServiceDiv>
           </MainInfo>
-
-          <ReviewContainer>
-            <h3>Review!</h3>
-          </ReviewContainer>
         </InfoContainer>
         <ReservationContainer>
           <Reservation>
@@ -164,6 +161,23 @@ function Detail() {
             </BookingButtonContainer>
           </Reservation>
         </ReservationContainer>
+
+        <ResButton
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          예약
+        </ResButton>
+
+        {isOpen && (
+          <Modal _handleModal={setIsOpen}>
+            <Reserve
+              hospitalInfo={hospitalInfo}
+              handleLoginBtn={handleLoginBtn}
+            />
+          </Modal>
+        )}
       </ContentContainer>
     </MainContainer>
   );
