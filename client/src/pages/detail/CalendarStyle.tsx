@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 const CalendarContainer = styled.div`
   .react-calendar {
     width: 400px;
@@ -9,6 +10,9 @@ const CalendarContainer = styled.div`
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
+    @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
+      width: 370px;
+    }
   }
   .react-calendar__navigation button {
     min-width: 44px;
