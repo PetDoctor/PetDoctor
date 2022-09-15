@@ -9,4 +9,7 @@ export const theme: DefaultTheme = {
     lightgray: '#ebebeb',
     gray: '#a0a0a0',
   },
+  device: {
+    mobile: '770px',
+  },
 };
