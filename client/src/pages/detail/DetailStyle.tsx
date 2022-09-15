@@ -4,14 +4,14 @@ import { Button } from '../pet-information/PetInfoStyle';
 const MainContainer = styled.div`
   max-width: 62.5rem;
   margin: 1rem auto;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     width: 100%;
     margin: 0rem;
   }
 `;
 const Header = styled.div`
   margin: 24px 0;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     display: none;
     margin-top: 0;
   }
@@ -19,14 +19,14 @@ const Header = styled.div`
 const ImgContainer = styled.div`
   display: flex;
   cursor: pointer;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     width: 100%;
   }
 `;
 const MainImg = styled.img`
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     width: 100%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -36,33 +36,33 @@ const RightTopImg = styled.img`
   border-top-right-radius: 10px;
   width: 320px;
   height: 50%;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     display: none;
   }
 `;
 const RightBottomImg = styled.img`
   border-bottom-right-radius: 10px;
   width: 320px;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     display: none;
   }
 `;
 const ContentContainer = styled.div`
   display: flex;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     flex-direction: column;
   }
 `;
 const InfoContainer = styled.div`
   flex: 0 0 60%;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     padding: 0rem 1rem;
   }
 `;
 const ReservationContainer = styled.div`
   padding: 1rem;
   flex: 0 0 40%;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     display: none;
   }
 `;
@@ -107,7 +107,7 @@ export const Ser = styled.div`
 `;
 export const ResButton = styled(Button)`
   display: none;
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
     display: block;
   }
 `;

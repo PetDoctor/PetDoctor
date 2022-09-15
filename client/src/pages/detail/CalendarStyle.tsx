@@ -10,7 +10,7 @@ const CalendarContainer = styled.div`
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
-    @media screen and (max-width: 50rem) {
+    @media screen and (max-width: ${(props) => props.theme.device.mobile}) {
       width: 370px;
     }
   }

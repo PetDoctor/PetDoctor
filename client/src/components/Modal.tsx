@@ -43,7 +43,7 @@ const ModalBlock = styled.div`
   @media (max-width: 1120px) {
     width: 30rem;
   }
-  @media (max-width: 50rem) {
+  @media (max-width: ${(props) => props.theme.device.mobile}) {
     width: 100%;
     padding: 3rem 0.5rem;
   }
