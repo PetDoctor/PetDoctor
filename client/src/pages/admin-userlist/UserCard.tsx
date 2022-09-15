@@ -10,7 +10,7 @@ import {
 import { UserAPI } from '../../apis/user/User';
 import { IAdminUserInfoList } from '../../apis/user/UserTypes';
 // 바뀐 로컬 주소 URL
-function UserCard({ data }: { data: IAdminUserInfoList }) {
+const UserCard = ({ data }: { data: IAdminUserInfoList }) => {
   const token = localStorage.getItem('token') || '';
   const [status, setStatus] = useState<string>(data?.userStatus);
   useEffect(() => {
@@ -43,6 +43,6 @@ function UserCard({ data }: { data: IAdminUserInfoList }) {
       </TextContainer>
     </InfoCard>
   );
-}
+};
 
 export default UserCard;

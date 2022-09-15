@@ -17,11 +17,11 @@ import {
   UploadFileLabel,
 } from './PetInfoStyle';
 
-function AddPet({
+const AddPet = ({
   onhandleAdd,
 }: {
   onhandleAdd: (petInfo: ISubmitPetInfo) => void;
-}) {
+}) => {
   const [gender, setGender] = useState<string>('');
   const [neut, setNeut] = useState<string>('');
   const [img, setImg] = useState<File | null>(null);
@@ -149,7 +149,7 @@ function AddPet({
       <Btn onClick={onSubmit}>펫 추가</Btn>
     </Container>
   );
-}
+};
 
 export default AddPet;
 

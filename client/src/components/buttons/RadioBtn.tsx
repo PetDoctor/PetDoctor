@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function RadioBtn({
+const RadioBtn = ({
   state,
   value,
   name,
@@ -11,7 +11,7 @@ function RadioBtn({
   value: string;
   name: string;
   setFunc: (gender: string) => void;
-}) {
+}) => {
   const onChange = () => {
     setFunc(value);
   };
@@ -29,7 +29,7 @@ function RadioBtn({
       <RadioText>{value}</RadioText>
     </Item>
   );
-}
+};
 const Item = styled.div`
   display: flex;
   margin-left: 0.2rem;

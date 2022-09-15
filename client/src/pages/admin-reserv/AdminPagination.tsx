@@ -8,7 +8,7 @@ interface IProps {
   setPage: (page: number) => void;
 }
 
-export default function Pagination({ total, limit, page, setPage }: IProps) {
+const Pagination = ({ total, limit, page, setPage }: IProps) => {
   // 페이지네이션 버튼의 갯수 구하기
   const numPages = Math.ceil(total / limit);
 
@@ -39,7 +39,9 @@ export default function Pagination({ total, limit, page, setPage }: IProps) {
       </Nav>
     </>
   );
-}
+};
+
+export default Pagination;
 
 const Nav = styled.nav`
   display: flex;

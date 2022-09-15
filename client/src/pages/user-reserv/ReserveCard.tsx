@@ -3,7 +3,7 @@ import { InfoCard, TextContainer } from '../../components/Liststyle';
 import { Column } from './ReserveStyle';
 import ResModal from '../../components/book/ResModal';
 import { IReservation } from '../../apis/reservation/ReserveTypes';
-function ReserveCard({ res, idx }: { res: IReservation; idx: number }) {
+const ReserveCard = ({ res, idx }: { res: IReservation; idx: number }) => {
   return (
     <InfoCard>
       <TextContainer>
@@ -17,6 +17,6 @@ function ReserveCard({ res, idx }: { res: IReservation; idx: number }) {
       </TextContainer>
     </InfoCard>
   );
-}
+};
 
 export default ReserveCard;

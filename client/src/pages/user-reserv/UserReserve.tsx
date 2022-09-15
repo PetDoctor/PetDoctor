@@ -17,7 +17,7 @@ interface pagesType {
   perPage: number;
   totalPage: number;
 }
-function UserReserve() {
+const UserReserve = () => {
   const token = localStorage.getItem('token') || '';
   // TODO: any type 해결
   const [resInfo, setResInfo] = useState<any>({
@@ -88,6 +88,6 @@ function UserReserve() {
       />
     </Container>
   );
-}
+};
 
 export default UserReserve;

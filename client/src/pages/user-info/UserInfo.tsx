@@ -26,7 +26,7 @@ import {
   IUserAddress,
 } from '../../apis/user/UserTypes';
 
-function UserInfo() {
+const UserInfo = () => {
   const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
   // 받아온 정보를 저장하는 state
@@ -103,7 +103,7 @@ function UserInfo() {
   // 로그아웃 함수
   const hospitalResetState = useResetRecoilState(hospitalLoginState);
   const userResetState = useResetRecoilState(userState);
-  async function handleLogout() {
+  const handleLogout = async () => {
     if (token) {
       localStorage.removeItem('token');
       userResetState();
@@ -111,7 +111,7 @@ function UserInfo() {
       await CustomAxiosGet.get('/hospital/logout');
       hospitalResetState();
     }
-  }
+  };
 
   const expiration = async () => {
     //TODO
@@ -193,6 +193,6 @@ function UserInfo() {
       </DeactivateContainer>
     </MainContainer>
   );
-}
+};
 
 export default UserInfo;

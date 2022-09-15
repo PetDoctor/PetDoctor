@@ -5,7 +5,7 @@ import AddPet from './AddPet';
 import { PetAPI } from '../../apis/user/User';
 import { IPetInfo, ISubmitPetInfo } from '../../apis/user/UserTypes';
 
-function PetInformation() {
+const PetInformation = () => {
   const token = localStorage.getItem('token') || '';
   const [pets, setPets] = useState<IPetInfo[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -52,6 +52,6 @@ function PetInformation() {
       ))}
     </MainContainer>
   );
-}
+};
 
 export default PetInformation;
