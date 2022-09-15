@@ -17,15 +17,13 @@ const ContentWrapper = styled.div`
 
 const Layout = () => {
   return (
-    <>
-      <Wrapper>
-        <Header searchBox={false} />
-        <ContentWrapper>
-          <Outlet />
-        </ContentWrapper>
-        <Footer />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Header searchBox={false} />
+      <ContentWrapper>
+        <Outlet />
+      </ContentWrapper>
+      <Footer />
+    </Wrapper>
   );
 };
 

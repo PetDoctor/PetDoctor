@@ -10,5 +10,8 @@ declare module 'styled-components' {
       lightgray: string;
       gray: string;
     };
+    device: {
+      mobile: string;
+    };
   }
 }
