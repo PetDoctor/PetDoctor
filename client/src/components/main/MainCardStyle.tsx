@@ -8,6 +8,13 @@ const MainCardWrapper = styled.div`
   justify-items: center;
   padding-top: 20px;
   grid-row-gap: 20px;
+  @media screen and (max-width: 550px) {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin: 0;
+    justify-content: center;
+  }
 `;
 
 const MainCardContainer = styled(Link)`
@@ -15,13 +22,15 @@ const MainCardContainer = styled(Link)`
   height: 385px;
   margin: 24px;
   border-radius: 12px;
-  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; */
   cursor: pointer;
   text-decoration: none;
   color: black;
   &:hover {
     text-decoration: none;
     color: black;
+  }
+  @media screen and (max-width: 550px) {
+    width: 100%;
   }
 `;
 
@@ -43,6 +52,11 @@ const MainCardAdress = styled.div`
 
 const MainCardImg = styled.img`
   border-radius: 10px;
+  width: 300px;
+  height: 285px;
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
 
 export {

@@ -8,6 +8,9 @@ import { IData } from '../../components/main/MainCard';
 const TagImg = styled.img`
   width: 40px;
   transition: 0.2s all ease-in-out;
+  @media screen and (max-width: 550px) {
+    width: 24px;
+  }
 `;
 interface ITagValue {
   tag: number;
@@ -44,6 +47,9 @@ const TagName = styled.p`
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
+  @media screen and (max-width: 550px) {
+    font-size: 0.6rem;
+  }
 `;
 
 interface ITagData {
