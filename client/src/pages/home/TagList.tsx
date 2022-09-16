@@ -9,6 +9,11 @@ const TagContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 90px;
+  @media screen and (max-width: 550px) {
+    /* flex-wrap: wrap; */
+    padding: 0px;
+    margin: 0 10px;
+  }
 `;
 
 export interface ITagsProps {

@@ -39,9 +39,8 @@ const MainCard = ({ filtered }: IProps) => {
         <MainCardImg
           src={items.image[0] || '/mainDefaultImg.png'}
           alt=""
-          width="300px"
-          height="285px"
         ></MainCardImg>
+
         <MainCardContent>
           <MainCardName>{items.name}</MainCardName>
           <MainCardAdress>
